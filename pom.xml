@@ -12,6 +12,8 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <selenium.version>4.19.1</selenium.version>
         <testng.version>7.9.0</testng.version>
         <allure.version>2.25.0</allure.version>
@@ -41,17 +43,10 @@
             <version>5.6.3</version>
         </dependency>
 
-        <!-- Allure TestNG -->
+        <!-- Allure TestNG (REQUIRED & VALID) -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>${allure.version}</version>
-        </dependency>
-
-        <!-- Allure Selenium -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-selenium-java</artifactId>
             <version>${allure.version}</version>
         </dependency>
 
@@ -60,7 +55,7 @@
     <build>
         <plugins>
 
-            <!-- Surefire + Allure -->
+            <!-- Maven Surefire for TestNG + Allure -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -69,6 +64,8 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+
+                    <!-- Allure results directory -->
                     <systemPropertyVariables>
                         <allure.results.directory>
                             target/allure-results

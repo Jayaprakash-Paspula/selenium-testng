@@ -6,17 +6,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>selenium-testng-allure</artifactId>
+    <artifactId>selenium-restassured-testng</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <selenium.version>4.19.1</selenium.version>
+        <java.version>17</java.version>
+        <selenium.version>4.18.1</selenium.version>
         <testng.version>7.9.0</testng.version>
-        <allure.version>2.25.0</allure.version>
+        <restassured.version>5.4.0</restassured.version>
+        <webdrivermanager.version>5.7.0</webdrivermanager.version>
+        <maven.surefire.version>3.2.5</maven.surefire.version>
     </properties>
 
     <dependencies>
@@ -36,18 +35,19 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- WebDriverManager -->
+        <!-- Rest Assured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${restassured.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- WebDriver Manager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.6.3</version>
-        </dependency>
-
-        <!-- Allure TestNG (REQUIRED & VALID) -->
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>${allure.version}</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
 
     </dependencies>
@@ -55,22 +55,14 @@
     <build>
         <plugins>
 
-            <!-- Maven Surefire for TestNG + Allure -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>${maven.surefire.version}</version>
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-
-                    <!-- Allure results directory -->
-                    <systemPropertyVariables>
-                        <allure.results.directory>
-                            target/allure-results
-                        </allure.results.directory>
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 

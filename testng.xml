@@ -1,13 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Selenium Test Suite">
-    <listeners>
-        <listener class-name="tests.AllureTestListener"/>
-    </listeners>
-
-    <test name="UI Tests">
-        <classes>
-            <class name="tests.GoogleSearchTest"/>
-        </classes>
+<suite name="Automation Suite">
+    <test name="UI and API Tests">
+        <packages>
+            <package name="com.example.ui"/>
+            <package name="com.example.api"/>
+        </packages>
     </test>
 </suite>
